@@ -11,11 +11,6 @@
     "type": "git",
     "url": "git+https://github.com/stormqx/hawkeye.git"
   },
-  "husky": {
-    "hooks": {
-      "post-merge": "node index.js"
-    }
-  },
   "keywords": [],
   "author": "stormqx <qixinstorm@gmail.com>",
   "license": "MIT",
@@ -24,10 +19,28 @@
   },
   "homepage": "https://github.com/stormqx/hawkeye#readme",
   "dependencies": {
+    "chalk": "^2.4.2",
     "cosmiconfig": "^5.1.0",
     "execa": "^1.0.0",
+    "find-parent-dir": "^0.3.0",
     "listr": "^0.14.3",
-    "micromatch": "^3.1.10"
+    "lodash": "^4.17.11",
+    "log-symbols": "^2.2.0",
+    "micromatch": "^3.1.10",
+    "package.json": "^2.0.1",
+    "path-is-inside": "^1.0.2",
+    "please-upgrade-node": "^3.1.1",
+    "string-argv": "^0.1.2"
+  },
+  "husky": {
+    "hooks": {
+      "post-merge": "node index.js"
+    }
+  },
+  "hawkeye": {
+    "package.json": [
+      "npm install"
+    ]
   },
   "devDependencies": {
     "eslint": "^5.15.3",
