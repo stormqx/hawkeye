@@ -1,6 +1,3 @@
-
-'use strict'
-
 const intersection = require('lodash/intersection')
 const isObject = require('lodash/isObject')
 const defaultsDeep = require('lodash/defaultsDeep')

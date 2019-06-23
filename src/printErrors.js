@@ -1,5 +1,3 @@
-'use strict'
-
 const errMsg = err => (err.privateMsg != null ? err.privateMsg : err.message)
 
 module.exports = function printErrors (errorInstance) {

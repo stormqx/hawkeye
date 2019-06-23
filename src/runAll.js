@@ -1,5 +1,3 @@
-'use strict'
-
 const Listr = require('listr')
 const git = require('./gitWorkflow')
 const makeCmdTasks = require('./makeCmdTasks')

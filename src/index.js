@@ -1,5 +1,3 @@
-'use strict'
-
 const cosmiconfig = require('cosmiconfig')
 const runAll = require('./runAll')
 const { getConfig } = require('./getConfig')

@@ -1,5 +1,3 @@
-'use strict'
-
 const findParentDir = require('find-parent-dir')
 
 module.exports = function resolveGitDir () {

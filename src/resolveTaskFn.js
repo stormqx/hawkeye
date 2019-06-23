@@ -1,5 +1,3 @@
-'use strict'
-
 const parse = require('string-argv')
 const execa = require('execa')
 const symbols = require('log-symbols')

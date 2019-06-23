@@ -3,14 +3,14 @@ const makeConsoleMock = require('consolemock')
 const printErrors = require('../src/printErrors')
 
 describe('printErrors', () => {
-  const originalConsole = console
+  const originalConsole = global.console
 
   beforeAll(() => {
-    console = makeConsoleMock()
+    global.console = makeConsoleMock()
   })
 
   beforeEach(() => {
-    console.clearHistory()
+    global.console.clearHistory()
   })
 
   afterAll(() => {

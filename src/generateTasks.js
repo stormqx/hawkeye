@@ -1,5 +1,3 @@
-'use strict'
-
 const micromatch = require('micromatch')
 const path = require('path')
 const pathIsInside = require('path-is-inside')

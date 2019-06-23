@@ -1,5 +1,3 @@
-'use strict'
-
 const path = require('path')
 const execa = require('execa')
 const resolveGitDir = require('./resolveGitDir')
