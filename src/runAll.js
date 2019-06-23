@@ -59,6 +59,6 @@ module.exports = function runAll (config) {
             exitOnError: !concurrent // Wait for all errors when running concurrently
           })
       }
-    ]).run()
+    ]).run().catch(err => { throw err })
   })
 }

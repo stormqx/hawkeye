@@ -3,12 +3,13 @@
 const cosmiconfig = require('cosmiconfig')
 const runAll = require('./runAll')
 const { getConfig } = require('./getConfig')
+const printErrors = require('./printErrors')
 
 const errConfigNotFound = new Error('Config could not be found')
 const SUCCESS = 0
 const ERROR = 1
 
-function loadConfig (configPath) {
+function loadConfig () {
   const explorer = cosmiconfig('hawkeye', {
     searchPlaces: [
       'package.json',
@@ -37,7 +38,8 @@ module.exports = function hawkeye (logger = console) {
           process.exitCode = SUCCESS
         }).catch(err => {
           process.exitCode = ERROR
-          logger.error(`${err.message}.`)
+          // Runtime errors detected, printing and exiting with non-zero
+          printErrors(err)
         })
     })
     .catch(err => {

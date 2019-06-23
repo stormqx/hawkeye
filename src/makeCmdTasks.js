@@ -5,11 +5,11 @@ const resolveTaskFn = require('./resolveTaskFn')
 
 module.exports = function makeCmdTasks (commands, fileList) {
   // debug('Creating listr tasks for commands %o', commands)
-  const lintersArray = isArray(commands) ? commands : [commands]
-  return lintersArray.map(linter => ({
-    title: linter,
+  const cmdArray = isArray(commands) ? commands : [commands]
+  return cmdArray.map(cmd => ({
+    title: cmd,
     task: resolveTaskFn({
-      linter,
+      cmd,
       fileList
     })
   }))

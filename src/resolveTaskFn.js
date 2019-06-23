@@ -11,9 +11,9 @@ function execLinter (bin, args, fileList) {
 
 const successMsg = linter => `${symbols.success} ${linter} execute success!`
 
-module.exports = function resolveTaskFn ({ linter, fileList }) {
-  const [binName, ...args] = parse(linter)
+module.exports = function resolveTaskFn ({ cmd, fileList }) {
+  const [binName, ...args] = parse(cmd)
   return (ctx) =>
-    execLinter(binName, args, fileList).then(result => successMsg(linter))
-      .catch(err => { throw new Error(err) })
+    execLinter(binName, args, fileList).then(result => successMsg(cmd))
+      .catch(err => { throw err })
 }

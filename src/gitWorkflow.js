@@ -18,7 +18,7 @@ async function execGit (cmd, options) {
     })
     return stdout
   } catch (err) {
-    throw new Error(err)
+    throw err
   }
 }
 
