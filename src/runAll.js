@@ -3,7 +3,10 @@ const git = require('./gitWorkflow')
 const makeCmdTasks = require('./makeCmdTasks')
 const generateTasks = require('./generateTasks')
 
+const debug = require('debug')('hawkeye:runtime')
+
 module.exports = function runAll (config) {
+  debug('Running all hawkeye scripts')
   // Config validation
   if (!config) {
     throw new Error('Invalid config provided to runAll! Use getConfig instead.')
@@ -12,11 +15,10 @@ module.exports = function runAll (config) {
   const { concurrent } = config
 
   return git.getDiffForTrees().then(files => {
-    console.log('Loaded list of diff files in git:\n%O', files)
     /* filenames is a string filepath array */
     const filenames = files.split('\n')
-
-    // linter task
+    debug('Loaded list of diff files in git:\n%O', filenames)
+    // hawkeye task
     const tasks = generateTasks(config, filenames).map(task => ({
       title: `Running tasks for ${task.pattern}`,
       task: () =>
@@ -38,10 +40,10 @@ module.exports = function runAll (config) {
       }
     }))
 
-    // If all of the configured "linters" should be skipped
+    // If all of the configured "hawkeye" should be skipped
     // avoid executing any logic
     if (tasks.every(task => task.skip())) {
-      console.log('No staged files match any of provided globs.')
+      console.log('No diff files match any of provided globs.')
       return 'No tasks to run.'
     }
 
@@ -57,6 +59,6 @@ module.exports = function runAll (config) {
             exitOnError: !concurrent // Wait for all errors when running concurrently
           })
       }
-    ]).run().catch(err => { throw err })
+    ]).run()
   })
 }

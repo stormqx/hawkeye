@@ -1,4 +1,5 @@
 const cosmiconfig = require('cosmiconfig')
+const debug = require('debug')('hawkeye:main')
 const runAll = require('./runAll')
 const { getConfig } = require('./getConfig')
 const printErrors = require('./printErrors')
@@ -23,16 +24,20 @@ function loadConfig () {
   return explorer.search()
 }
 
-module.exports = function hawkeye (logger = console) {
+module.exports = function hawkeye (logger = console, debugMode) {
   // load hawkeye config
+  debug('Loading config using `cosmiconfig`')
+
   return loadConfig()
     .then(result => {
       if (result == null) throw errConfigNotFound
 
+      debug('Successfully loaded config from `%s`:\n%O', result.filepath, result.config)
       const config = getConfig(result.config)
       return runAll(config)
         .then(() => {
           // No errors, exiting with 0
+          debug('hawkeye were executed successfully!')
           process.exitCode = SUCCESS
         }).catch(err => {
           process.exitCode = ERROR
@@ -42,6 +47,7 @@ module.exports = function hawkeye (logger = console) {
     })
     .catch(err => {
       process.exitCode = ERROR
+      // just log custom error message
       if (err === errConfigNotFound) {
         logger.error(`${err.message}.`)
       } else {

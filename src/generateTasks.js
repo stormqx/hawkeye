@@ -4,12 +4,17 @@ const pathIsInside = require('path-is-inside')
 const { getConfig } = require('./getConfig')
 const resolveGitDir = require('./resolveGitDir')
 
+const debug = require('debug')('hawkeye:gen-tasks')
+
 module.exports = function generateTasks (config, diffRelFiles) {
+  debug('generating hawkeye tasks')
   const normalizedConfig = getConfig(config)
   const { linters, globOptions, ignore } = normalizedConfig
   const gitDir = resolveGitDir()
+  debug('gitDir: %s', gitDir)
   const cwd = process.cwd()
   const diffFiles = diffRelFiles.map(file => path.resolve(gitDir, file))
+  debug('diffFiles: \n%O', diffFiles)
 
   return Object.keys(linters).map(pattern => {
     const commands = linters[pattern]
@@ -29,6 +34,7 @@ module.exports = function generateTasks (config, diffRelFiles) {
       }
     )
     const task = { pattern, commands, fileList }
+    debug('hawkeye tasks: \n%O', task)
     return task
   })
 }

@@ -1,6 +1,7 @@
 const intersection = require('lodash/intersection')
 const isObject = require('lodash/isObject')
 const defaultsDeep = require('lodash/defaultsDeep')
+const debug = require('debug')('hawkeye:cfg')
 
 /**
  * Default config object
@@ -17,6 +18,7 @@ const defaultConfig = {
 }
 
 function getConfig (sourceConfig) {
+  debug('Normalizing config')
   return defaultsDeep(
     {}, // Do not mutate sourceConfig!!!
     isSimple(sourceConfig) ? { linters: sourceConfig } : sourceConfig,
@@ -25,6 +27,7 @@ function getConfig (sourceConfig) {
 }
 
 function validateConfig (config) {
+  debug('validating config')
   // TODO
   return config
 }
