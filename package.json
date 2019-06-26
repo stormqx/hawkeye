@@ -2,7 +2,6 @@
   "name": "hawkeye",
   "version": "0.0.0-development",
   "description": "",
-  "main": "index.js",
   "bin": "index.js",
   "scripts": {
     "test": "jest",
@@ -12,7 +11,13 @@
     "type": "git",
     "url": "git+https://github.com/stormqx/hawkeye.git"
   },
-  "keywords": [],
+  "files": ["index.js", "src"],
+  "keywords": [
+    "package.json", 
+    "hawkeye", 
+    "git",
+    "diff"
+  ],
   "author": "stormqx <qixinstorm@gmail.com>",
   "license": "MIT",
   "bugs": {

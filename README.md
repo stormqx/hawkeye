@@ -12,12 +12,13 @@
 
 - [✓] debug mode
 - [ ] unit test
-- [ ] travis.ci
+- [✓] travis.ci
 - [ ] codecov
 - [ ] changelog
-- [ ] build
-- [ ] npm publish
+- [✓] npm publish
 - [ ] TypeScript
+- [ ] validating config
+- [ ] windows support
 
 ## License
 

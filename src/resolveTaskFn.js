@@ -5,9 +5,9 @@ const symbols = require('log-symbols')
 const debug = require('debug')('hawkeye:task')
 
 function execLinter (bin, args, fileList) {
-  // const binArgs = args.concat(fileList)
   // pass fileList to args will cause some exceptions.
   // e.g. { bin: 'npm', args: 'install', fileList: 'package.json'}
+  // const binArgs = args.concat(fileList)
   debug('binName:', bin)
   debug('binArgs: %o', args)
   return execa(bin, args)

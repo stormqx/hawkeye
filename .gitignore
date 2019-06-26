@@ -27,6 +27,3 @@ node_modules
 .idea
 .vscode
 coverage/
-
-# hawkeye
-.hawkeyerc.json
