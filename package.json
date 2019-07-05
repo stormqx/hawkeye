@@ -1,6 +1,6 @@
 {
-  "name": "hawkeye",
-  "version": "0.0.0-development",
+  "name": "@stormqx/hawkeye",
+  "version": "0.0.1-development",
   "description": "",
   "bin": "index.js",
   "scripts": {

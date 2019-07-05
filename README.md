@@ -65,6 +65,14 @@ hawkeye支持多种方式编辑配置文件：
 }
 ```
 
+## publish
+```
+$ npm adduser
+... input username password email
+
+$ npm publish --access public
+```
+
 ## flow chart
 ![hawkeye](https://user-images.githubusercontent.com/10650818/60398579-a061c700-9b8c-11e9-8b41-03089d17566f.jpg)
 

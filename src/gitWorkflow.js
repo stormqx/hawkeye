@@ -23,7 +23,7 @@ async function execGit (cmd, options) {
   }
 }
 
-async function getDiffForTrees (tree1 = 'ORIG_HEAD', tree2 = 'HEAD', options) {
+async function getDiffForTrees (tree1 = 'HEAD@{1}', tree2 = 'HEAD', options) {
   debug(`Generating diff between trees ${tree1} and ${tree2}...`)
   return execGit(
     [

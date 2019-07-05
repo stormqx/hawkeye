@@ -13,6 +13,7 @@ module.exports = function generateTasks (config, diffRelFiles) {
   const gitDir = resolveGitDir()
   debug('gitDir: %s', gitDir)
   const cwd = process.cwd()
+  debug('process cwd: %s', cwd)
   const diffFiles = diffRelFiles.map(file => path.resolve(gitDir, file))
   debug('diffFiles: \n%O', diffFiles)
 
