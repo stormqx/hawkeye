@@ -13,21 +13,18 @@ module.exports = function generateTasks (config, diffRelFiles) {
   const gitDir = resolveGitDir()
   debug('gitDir: %s', gitDir)
   const cwd = process.cwd()
-  debug('process cwd: %s', cwd)
+  debug('process CWD: %s', cwd)
+  // Only worry about children of the CWD
+  // Make the paths relative to CWD for filtering
   const diffFiles = diffRelFiles.map(file => path.resolve(gitDir, file))
-  debug('diffFiles: \n%O', diffFiles)
+    .filter(file => pathIsInside(file, cwd))
+    .map(file => path.relative(cwd, file))
+  debug('diffFiles relative to CWD: \n%O', diffFiles)
 
   return Object.keys(linters).map(pattern => {
     const commands = linters[pattern]
-    const isParentDirPattern = pattern.startsWith('../')
-
     const fileList = micromatch(
-      diffFiles
-        // Only worry about children of the CWD unless the pattern explicitly
-        // specifies that it concerns a parent directory.
-        .filter(file => isParentDirPattern || pathIsInside(file, cwd))
-        // Make the paths relative to CWD for filtering
-        .map(file => path.relative(cwd, file)),
+      diffFiles,
       pattern,
       {
         ...globOptions,
