@@ -65,6 +65,18 @@ hawkeye支持多种方式编辑配置文件：
 }
 ```
 
+## filtering files
+hawkeye使用[micromatch](https://github.com/micromatch/micromatch)匹配glob pattern。使用下列规则：
+* 默认开启了micromatch的`matchBase`选项。这意味着如果你提供的glob pattern不包含`/`，hawkeye尝试去匹配文件名，不关心文件的目录:
+  * `*.json`会匹配所有的json文件，比如`/package.json`，`/app/public/src/package.json`
+* 如果glob pattern包含了`/`，hawkeye会匹配路径：
+  * `/*.json`会匹配根目录(`process.cwd`)的json文件，因此会匹配`/package.json`，不会匹配`/app/public/src/package.json`
+
+## 多package仓库如何使用`hawkeye`？
+* 如果想在多package仓库中使用hawkeye，推荐将hawkeye和`[husky](https://github.com/typicode/husky)`安装在根目录的`package.json`，因为husky每次安装会重置git hooks脚本，多次安装会互相覆盖。在hawkeye配置文件中配置的命令的默认执行位置是`process.cwd`。
+
+* 如果是使用`[lerna](https://github.com/lerna/lerna)`的monorepo，会在所有的子包中执行命令。如果没有使用`lerna`，则需要你通过npm scripts手动处理在子包中的操作。
+
 ## publish
 ```
 $ npm adduser
